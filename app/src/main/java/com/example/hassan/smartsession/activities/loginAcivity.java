@@ -4,8 +4,11 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
+import android.graphics.drawable.AnimationDrawable;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.os.Build;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,6 +17,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -35,13 +39,28 @@ public class loginAcivity extends AppCompatActivity {
     ProgressDialog progressDialog;
     private static api apiInterface;
 
+    AnimationDrawable anim;
+    AssetManager am;
+
 
     private static SharePref pref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+
+          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            findViewById(android.R.id.content).setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
+        }
         setContentView(R.layout.activity_login_acivity);
+        am = this.getApplicationContext().getAssets();
+        RelativeLayout container = (RelativeLayout) findViewById(R.id.container);
+        anim = (AnimationDrawable) container.getBackground();
+        anim.setEnterFadeDuration(100);
+        anim.setExitFadeDuration(1000);
+
 
         t1 = findViewById(R.id.rollTxt);
         t2 = findViewById(R.id.password);
@@ -97,13 +116,14 @@ public class loginAcivity extends AppCompatActivity {
             t2.requestFocus();
         }
         progressDialog.show();
+        disableBtn();
         Call<loginResponse> call = apiInterface.PerformLogin(roll, password);
         call.enqueue(new Callback<loginResponse>() {
             @Override
             public void onResponse(Call<loginResponse> call, Response<loginResponse> response) {
                 try {
 
-                    textView.setEnabled(false);
+
                     if (response.body().getResponse().equals("ok")) {
                         pref.writeLoginStatus(true);
                         String roll = response.body().getRoll_no();
@@ -143,12 +163,13 @@ public class loginAcivity extends AppCompatActivity {
         });
         t1.setText("");
         t2.setText("");
+     enableBtn();
 
 
     }
 
 
-    public void setProgressBarVisible() {
+    public void disableBtn() {
 
         t1.setEnabled(false);
         t2.setEnabled(false);
@@ -156,7 +177,7 @@ public class loginAcivity extends AppCompatActivity {
 
     }
 
-    public void setProgressBarInvisible() {
+    public void enableBtn() {
 
         t1.setEnabled(true);
         t2.setEnabled(true);
@@ -168,5 +189,20 @@ public class loginAcivity extends AppCompatActivity {
     public void onBackPressed() {
         moveTaskToBack(true);
         finish();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+          if (anim != null && !anim.isRunning())
+            anim.start();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (anim != null && anim.isRunning())
+            anim.stop();
+
     }
 }

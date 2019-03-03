@@ -26,8 +26,14 @@ import com.example.hassan.smartsession.R;
 import com.example.hassan.smartsession.api.ApiClient;
 import com.example.hassan.smartsession.api.api;
 import com.example.hassan.smartsession.model.loginResponse;
+import com.example.hassan.smartsession.model.macAddressResponse;
 import com.example.hassan.smartsession.sharedPeference.SharePref;
 
+import java.net.NetworkInterface;
+import java.util.Collections;
+import java.util.List;
+
+import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -44,13 +50,17 @@ public class loginAcivity extends AppCompatActivity {
 
 
     private static SharePref pref;
+    static String macAdress;
+    String macAd;
+
+    TextView textView1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
 
-          if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             findViewById(android.R.id.content).setSystemUiVisibility(
                     View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
         }
@@ -65,6 +75,11 @@ public class loginAcivity extends AppCompatActivity {
         t1 = findViewById(R.id.rollTxt);
         t2 = findViewById(R.id.password);
         textView = findViewById(R.id.loginButton);
+        textView1 = findViewById(R.id.newBtn);
+
+
+        macAd = getMacAddr();
+
         progressDialog = new ProgressDialog(loginAcivity.this,
                 R.style.ThemeOverlay_AppCompat_Dialog_Alert);
         progressDialog.setIndeterminate(true);
@@ -72,6 +87,13 @@ public class loginAcivity extends AppCompatActivity {
 
         apiInterface = ApiClient.getApiClient().create(api.class);
 
+
+        textView1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(), signupAcitvity.class));
+            }
+        });
 
         pref = new SharePref(this);
 
@@ -117,7 +139,7 @@ public class loginAcivity extends AppCompatActivity {
         }
         progressDialog.show();
         disableBtn();
-        Call<loginResponse> call = apiInterface.PerformLogin(roll, password);
+        Call<loginResponse> call = apiInterface.PerformLogin(roll, password, macAd);
         call.enqueue(new Callback<loginResponse>() {
             @Override
             public void onResponse(Call<loginResponse> call, Response<loginResponse> response) {
@@ -125,25 +147,29 @@ public class loginAcivity extends AppCompatActivity {
 
 
                     if (response.body().getResponse().equals("ok")) {
-                        pref.writeLoginStatus(true);
-                        String roll = response.body().getRoll_no();
-                        pref.WriteRollNo(roll);
-                        String name = response.body().getName();
-                        pref.WriteName(name);
-                        String password = response.body().getPassword();
-                        String email = response.body().getEmail();
-                        String department = response.body().getDepartment();
-                        String semester = response.body().getSemester();
-                        pref.WriteDepartment(department);
-                        pref.WriteSemester(semester);
-                        progressDialog.dismiss();
-                        Toast.makeText(loginAcivity.this, "Welcome", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                        startActivity(intent);
 
-                        finish();
+                        if (response.body().getStatus().equals("Verified")) {
+                            pref.writeLoginStatus(true);
+                            String roll = response.body().getRoll_no();
+                            pref.WriteRollNo(roll);
+                            String name = response.body().getName();
+                            pref.WriteName(name);
+                            String password = response.body().getPassword();
+                            String email = response.body().getEmail();
+                            String department = response.body().getDepartment();
+                            String semester = response.body().getSemester();
+                            String mac = response.body().getMac();
+                            pref.WriteDepartment(department);
+                            pref.WriteSemester(semester);
+                            String getMac = pref.readMac();
+                            progressDialog.dismiss();
+                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            finish();
+                        } else {
+                            Toast.makeText(loginAcivity.this, "Your Account is Not Varified", Toast.LENGTH_SHORT).show();
+                            progressDialog.dismiss();
+                        }
+
 
                     } else if (response.body().getResponse().equals("failed")) {
                         progressDialog.dismiss();
@@ -152,18 +178,19 @@ public class loginAcivity extends AppCompatActivity {
                     }
                 } catch (Exception e) {
                     Toast.makeText(loginAcivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
-
+                    progressDialog.dismiss();
                 }
             }
 
             @Override
             public void onFailure(Call<loginResponse> call, Throwable t) {
                 Toast.makeText(loginAcivity.this, t.getMessage(), Toast.LENGTH_SHORT).show();
+                progressDialog.dismiss();
             }
         });
         t1.setText("");
         t2.setText("");
-     enableBtn();
+        enableBtn();
 
 
     }
@@ -194,7 +221,7 @@ public class loginAcivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-          if (anim != null && !anim.isRunning())
+        if (anim != null && !anim.isRunning())
             anim.start();
     }
 
@@ -204,5 +231,34 @@ public class loginAcivity extends AppCompatActivity {
         if (anim != null && anim.isRunning())
             anim.stop();
 
+    }
+
+
+    public static String getMacAddr() {
+        try {
+            List<NetworkInterface> all = Collections.list(NetworkInterface.getNetworkInterfaces());
+            for (NetworkInterface nif : all) {
+                if (!nif.getName().equalsIgnoreCase("wlan0")) continue;
+
+                byte[] macBytes = nif.getHardwareAddress();
+                if (macBytes == null) {
+                    return "";
+                }
+
+                StringBuilder res1 = new StringBuilder();
+                for (byte b : macBytes) {
+                    res1.append(Integer.toHexString(b & 0xFF) + ":");
+                }
+
+                if (res1.length() > 0) {
+                    res1.deleteCharAt(res1.length() - 1);
+                    macAdress = res1.toString();
+                }
+                return macAdress;
+            }
+        } catch (Exception ex) {
+            //handle exception
+        }
+        return "";
     }
 }

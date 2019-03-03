@@ -12,7 +12,6 @@ public class loginResponse {
     private String name;
 
 
-
     @SerializedName("roll_no")
     private String roll_no;
 
@@ -28,6 +27,16 @@ public class loginResponse {
     @SerializedName("password")
     private String password;
 
+    @SerializedName("mac")
+    private String mac;
+
+    @SerializedName("status")
+    private String status;
+
+
+    public String getMac() {
+        return mac;
+    }
 
     public String getName() {
         return name;
@@ -57,5 +66,8 @@ public class loginResponse {
         return response;
     }
 
+    public String getStatus() {
+        return status;
+    }
 
 }

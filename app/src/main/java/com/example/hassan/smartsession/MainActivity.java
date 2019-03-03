@@ -49,10 +49,14 @@ public class MainActivity extends AppCompatActivity {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-        }
-String name=prefConfig.readName();
-        textView1=findViewById(R.id.textView3);
-        textView1.setText(name);
+            finish();
+        }else
+            {
+                String name=prefConfig.readName();
+                textView1=findViewById(R.id.textView3);
+                textView1.setText(name);
+            }
+
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -74,6 +78,7 @@ startActivity(new Intent(this,scanActivity.class));
         prefConfig.WriteSemester("sems");
         prefConfig.WriteName("name");
         prefConfig.WriteDepartment("depart");
+        prefConfig.WriteMacAddress("mac");
         startActivity(new Intent(this, loginAcivity.class));
         finish();
     }

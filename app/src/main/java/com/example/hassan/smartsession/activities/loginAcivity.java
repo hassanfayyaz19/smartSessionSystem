@@ -157,7 +157,7 @@ public class loginAcivity extends AppCompatActivity {
 
                     if (response.body().getResponse().equals("ok")) {
 
-                        if (response.body().getStatus().equals("Verified")) {
+                        if (response.body().getStatus().equals("verified")) {
                             pref.writeLoginStatus(true);
                             String roll = response.body().getRoll_no();
                             pref.WriteRollNo(roll);

@@ -38,6 +38,7 @@ public interface api {
             @Field("name") String name,
             @Field("roll_no") String roll_no,
             @Field("subject") String subject,
+            @Field("inst_fc") String inst_fc,
             @Field("department") String department,
             @Field("semester") String semester,
             @Field("status") String status,

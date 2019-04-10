@@ -52,7 +52,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
 
     LocationManager locationManager;
     private static final int REQUEST_LOCATION = 1;
-    String lattitude, longitude;
+    String lattitude, longitude,facultyCode;
     double distance;
     String qrlat, qrLong;
 
@@ -93,6 +93,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
             String id = split[4];
             qrlat = split[5];
             qrLong = split[6];
+facultyCode=split[7];
 
             /* Toast.makeText(this, lat+" and " + longi, Toast.LENGTH_SHORT).show();
              */
@@ -103,7 +104,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
                     if (distance >= 1000) {
                         Toast.makeText(this, "Out of Range", Toast.LENGTH_SHORT).show();
                     } else {
-                        Call<attendenceResponse> call = apiInterface.createuser(name, roll, subject, department, semester, status, macAdress);
+                        Call<attendenceResponse> call = apiInterface.createuser(name, roll, subject,facultyCode, department, semester, status, macAdress);
                         call.enqueue(new Callback<attendenceResponse>() {
                             @Override
                             public void onResponse(Call<attendenceResponse> call, Response<attendenceResponse> response) {

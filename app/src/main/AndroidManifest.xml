@@ -7,6 +7,8 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="ACCESS_COARSE_LOCATION"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -25,7 +27,11 @@
         <activity android:name=".activities.loginAcivity" />
         <activity android:name=".activities.scanActivity" />
         <activity android:name=".activities.ViewAttendence" />
-        <activity android:name=".activities.signupAcitvity"></activity>
+        <activity android:name=".activities.signupAcitvity" />
+        <activity
+            android:name=".navi"
+            android:label="@string/title_activity_navi"
+            android:theme="@style/AppTheme"></activity>
     </application>
 
 </manifest>

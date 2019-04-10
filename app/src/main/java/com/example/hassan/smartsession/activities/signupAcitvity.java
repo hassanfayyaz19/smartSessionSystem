@@ -77,7 +77,7 @@ public class signupAcitvity extends AppCompatActivity {
     public void createNew(View view) {
         String name = t1.getText().toString().trim().toUpperCase();
         String roll = t2.getText().toString().trim();
-        String depart = t3.getText().toString().trim().toUpperCase();
+        String depart = t3.getText().toString().trim().toLowerCase();
         String semester = t4.getText().toString().trim();
         String email = t5.getText().toString().trim();
         String password = t6.getText().toString().trim();
@@ -123,12 +123,14 @@ public class signupAcitvity extends AppCompatActivity {
                     public void onResponse(Call<signupResponse> call, Response<signupResponse> response) {
                         if(response.body().getResponse().equals("same"))
                         {
+                            progressDialog.dismiss();
                             Toast.makeText(signupAcitvity.this, "User can't Create Account twice on same device", Toast.LENGTH_SHORT).show();
-                       progressDialog.dismiss();
+
                         }
                        else if (response.body().getResponse().equals("ok")) {
-                            Toast.makeText(signupAcitvity.this, "Successful", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
+                            Toast.makeText(signupAcitvity.this, "Successful", Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), loginAcivity.class));
                             finish();
                             t1.setText("");
@@ -140,8 +142,9 @@ public class signupAcitvity extends AppCompatActivity {
                             t7.setText("");
 
                         } else if (response.body().getResponse().equals("failed")) {
-                            Toast.makeText(signupAcitvity.this, "Error Try Again..!!", Toast.LENGTH_SHORT).show();
                             progressDialog.dismiss();
+                            Toast.makeText(signupAcitvity.this, "Error Try Again..!!", Toast.LENGTH_SHORT).show();
+
                         }
                     }
 

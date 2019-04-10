@@ -1,14 +1,19 @@
 package com.example.hassan.smartsession.activities;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.drawable.AnimationDrawable;
+import android.location.Location;
+import android.location.LocationManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Build;
+import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -27,6 +32,7 @@ import com.example.hassan.smartsession.api.ApiClient;
 import com.example.hassan.smartsession.api.api;
 import com.example.hassan.smartsession.model.loginResponse;
 import com.example.hassan.smartsession.model.macAddressResponse;
+import com.example.hassan.smartsession.navi;
 import com.example.hassan.smartsession.sharedPeference.SharePref;
 
 import java.net.NetworkInterface;
@@ -55,10 +61,12 @@ public class loginAcivity extends AppCompatActivity {
 
     TextView textView1;
 
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
 
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             findViewById(android.R.id.content).setSystemUiVisibility(
@@ -70,6 +78,7 @@ public class loginAcivity extends AppCompatActivity {
         anim = (AnimationDrawable) container.getBackground();
         anim.setEnterFadeDuration(100);
         anim.setExitFadeDuration(1000);
+
 
 
         t1 = findViewById(R.id.rollTxt);
@@ -163,7 +172,7 @@ public class loginAcivity extends AppCompatActivity {
                             pref.WriteSemester(semester);
                             String getMac = pref.readMac();
                             progressDialog.dismiss();
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), navi.class));
                             finish();
                         } else {
                             Toast.makeText(loginAcivity.this, "Your Account is Not Varified", Toast.LENGTH_SHORT).show();
@@ -261,4 +270,7 @@ public class loginAcivity extends AppCompatActivity {
         }
         return "";
     }
+
+
+
 }

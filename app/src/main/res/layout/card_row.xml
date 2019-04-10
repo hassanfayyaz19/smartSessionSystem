@@ -8,7 +8,7 @@
     android:layout_marginLeft="5dp"
     android:layout_marginTop="5dp"
     android:layout_marginRight="5dp"
-    app:cardBackgroundColor="@color/bg_login"
+    app:cardBackgroundColor="#00b8d4"
     app:cardCornerRadius="5dp">
 
     <LinearLayout

@@ -1,147 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/container"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/animation_list"
-    android:orientation="vertical"
     android:padding="10dp">
+
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/lblHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginBottom="10dp"
+                android:layout_marginTop="40dp"
                 android:fontFamily="cursive"
                 android:gravity="center_horizontal"
-                android:padding="20dp"
                 android:text="SignUp"
                 android:textColor="#fff"
                 android:textSize="50sp"
                 android:textStyle="bold"
-                android:typeface="monospace" />
+                android:typeface="monospace"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/nameTxt1"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
                 android:adjustViewBounds="true"
                 android:alpha="0.7"
+                android:autoText="false"
                 android:hint="Name"
-                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:textColorHint="#fff"
-                android:textSize="20sp" />
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
                 android:id="@+id/rollTxt1"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:alpha="0.7"
+                android:focusableInTouchMode="true"
                 android:hint="Roll No"
-                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:textColorHint="#fff"
-                android:textSize="20sp" />
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/nameTxt1" />
 
             <EditText
                 android:id="@+id/departTxt1"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:alpha="0.7"
+                android:focusableInTouchMode="true"
                 android:hint="Department"
-                android:padding="10dp"
                 android:singleLine="true"
                 android:textAllCaps="true"
                 android:textColor="@android:color/black"
                 android:textColorHint="#fff"
-                android:textSize="20sp" />
-
-            <EditText
-                android:id="@+id/semesterTxt1"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:adjustViewBounds="true"
-                android:alpha="0.7"
-                android:hint="Semester"
-                android:inputType="number"
-                android:padding="10dp"
-                android:singleLine="true"
-                android:textColor="@android:color/black"
-                android:textColorHint="#fff"
-                android:textSize="20sp" />
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rollTxt1" />
 
             <EditText
                 android:id="@+id/emailTxt"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:alpha="0.7"
+                android:focusableInTouchMode="true"
                 android:hint="Email"
-                android:padding="10dp"
                 android:singleLine="true"
                 android:textColor="@android:color/black"
                 android:textColorHint="#fff"
-                android:textSize="20sp" />
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/semesterTxt1" />
+
+            <EditText
+                android:id="@+id/semesterTxt1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:alpha="0.7"
+                android:focusableInTouchMode="true"
+                android:hint="Semester"
+                android:inputType="number"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                android:textColorHint="#fff"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/departTxt1" />
 
             <EditText
                 android:id="@+id/passwordTxt"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:alpha="0.7"
+                android:focusableInTouchMode="true"
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textColorHint="#fff"
-                android:textSize="20sp" />
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/emailTxt" />
 
             <EditText
                 android:id="@+id/passwordConfirmTxt"
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
+                android:layout_height="wrap_content"
                 android:adjustViewBounds="true"
                 android:alpha="0.7"
+                android:fadeScrollbars="false"
+                android:focusableInTouchMode="true"
                 android:hint="Confirm Password"
                 android:inputType="textPassword"
-                android:padding="10dp"
                 android:textColor="@android:color/black"
                 android:textColorHint="#fff"
-                android:textSize="20sp" />
+                android:textSize="24sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordTxt" />
 
             <Button
                 android:id="@+id/signupButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="8dp"
                 android:background="@color/btn_login_bg"
                 android:onClick="createNew"
                 android:text="Create Account"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/passwordConfirmTxt" />
+
         </LinearLayout>
     </ScrollView>
+
 
 </RelativeLayout>

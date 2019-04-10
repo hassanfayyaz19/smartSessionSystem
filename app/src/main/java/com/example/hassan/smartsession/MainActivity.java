@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.content.res.AssetManager;
 import android.graphics.drawable.AnimationDrawable;
+import android.location.LocationManager;
 import android.os.Build;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -29,7 +30,6 @@ public class MainActivity extends AppCompatActivity {
     ImageButton textView;
     TextView textView1;
 
-    private static final int REQUEST_CAMERARESULT = 201;
 
 
     @Override
@@ -52,9 +52,11 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }else
             {
-                String name=prefConfig.readName();
-                textView1=findViewById(R.id.textView3);
-                textView1.setText(name);
+                Intent intent=new Intent(this,navi.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finish();
             }
 
         textView.setOnClickListener(new View.OnClickListener() {

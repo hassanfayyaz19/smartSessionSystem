@@ -2,6 +2,7 @@ package com.example.hassan.smartsession.api;
 
 import com.example.hassan.smartsession.model.ViewDataResponse;
 import com.example.hassan.smartsession.model.attendenceResponse;
+import com.example.hassan.smartsession.model.changePasswordResponse;
 import com.example.hassan.smartsession.model.loginResponse;
 import com.example.hassan.smartsession.model.macAddressResponse;
 import com.example.hassan.smartsession.model.signupResponse;
@@ -67,5 +68,12 @@ public interface api {
     );
 
 
+    @GET("updatepassword.php")
+    Call<changePasswordResponse> changePass(
+            @Query("password") String pass,
+            @Query("roll") String rollNo
+
+
+    );
 
 }

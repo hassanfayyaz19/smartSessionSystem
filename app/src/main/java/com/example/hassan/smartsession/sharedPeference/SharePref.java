@@ -87,5 +87,14 @@ public class SharePref {
         return sharedPreferences.getString(mac, "mac");
     }
 
+    public void writePassword(String pass)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(password, pass);
+        editor.commit();
+    }
 
+    public String readPassword() {
+        return sharedPreferences.getString(password, "password");
+    }
 }

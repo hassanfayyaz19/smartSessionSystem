@@ -61,7 +61,7 @@ public class loginAcivity extends AppCompatActivity {
 
     TextView textView1;
 
-
+   private String password;
 
 
     @Override
@@ -136,7 +136,7 @@ public class loginAcivity extends AppCompatActivity {
 
     private void login() {
         String roll = t1.getText().toString().trim();
-        String password = t2.getText().toString().trim();
+         password = t2.getText().toString().trim();
 
         if (roll.isEmpty()) {
             t1.setError("Enter roll num");
@@ -163,11 +163,12 @@ public class loginAcivity extends AppCompatActivity {
                             pref.WriteRollNo(roll);
                             String name = response.body().getName();
                             pref.WriteName(name);
-                            String password = response.body().getPassword();
+
                             String email = response.body().getEmail();
                             String department = response.body().getDepartment();
                             String semester = response.body().getSemester();
                             String mac = response.body().getMac();
+                            pref.writePassword(password);
                             pref.WriteDepartment(department);
                             pref.WriteSemester(semester);
                             String getMac = pref.readMac();

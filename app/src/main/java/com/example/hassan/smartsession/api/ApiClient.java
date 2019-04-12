@@ -9,7 +9,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class ApiClient {
 
    /* public static final String Base_URL = "http://hassan105.000webhostapp.com/smartSession/";*/
-    public static final String Base_URL="http://192.168.1.107/php/smart/";
+  /*  public static final String Base_URL="http://192.168.43.251/php/smart/";*/
+    public static final String Base_URL="http://smartsessionqr.com/mobile/";
+
 
     public static Retrofit retrofit = null;
 

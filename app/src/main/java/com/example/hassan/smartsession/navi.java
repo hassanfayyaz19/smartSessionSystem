@@ -18,6 +18,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.hassan.smartsession.activities.ViewAttendence;
+import com.example.hassan.smartsession.activities.changePasswordActivity;
 import com.example.hassan.smartsession.activities.loginAcivity;
 import com.example.hassan.smartsession.activities.scanActivity;
 import com.example.hassan.smartsession.sharedPeference.SharePref;
@@ -41,9 +42,6 @@ public class navi extends AppCompatActivity
         rollView = findViewById(R.id.rollnoView);
 
 
-
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -56,7 +54,6 @@ public class navi extends AppCompatActivity
 
         android.support.v7.widget.GridLayout mainGrid = (android.support.v7.widget.GridLayout) findViewById(R.id.mainGrid);
         setSingleEvent(mainGrid);
-
 
 
     }
@@ -89,6 +86,8 @@ public class navi extends AppCompatActivity
         if (id == R.id.action_settings) {
             logoutUser();
             return true;
+        } else if (id == R.id.action_changePass) {
+            startActivity(new Intent(this, changePasswordActivity.class));
         }
 
         return super.onOptionsItemSelected(item);
@@ -103,13 +102,13 @@ public class navi extends AppCompatActivity
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            startActivity(new Intent(this,scanActivity.class));
+            startActivity(new Intent(this, scanActivity.class));
         } else if (id == R.id.nav_gallery) {
 
         } else if (id == R.id.nav_share) {
-
+            startActivity(new Intent(this, changePasswordActivity.class));
         } else if (id == R.id.nav_send) {
-           logoutUser();
+            logoutUser();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -135,6 +134,8 @@ public class navi extends AppCompatActivity
                         Intent intent = new Intent(navi.this, ViewAttendence.class);
                         startActivity(intent);
 
+                    } else if (finalI == 3) {
+                        logoutUser();
                     }
 
 
@@ -143,14 +144,14 @@ public class navi extends AppCompatActivity
         }
     }
 
-    public void logoutUser()
-    {
+    public void logoutUser() {
         prefConfig.writeLoginStatus(false);
         prefConfig.WriteRollNo("user");
         prefConfig.WriteSemester("sems");
         prefConfig.WriteName("name");
         prefConfig.WriteDepartment("depart");
         prefConfig.WriteMacAddress("mac");
+        prefConfig.writePassword("password");
         startActivity(new Intent(this, loginAcivity.class));
         finish();
     }

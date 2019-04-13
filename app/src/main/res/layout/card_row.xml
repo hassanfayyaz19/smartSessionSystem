@@ -26,7 +26,10 @@
             android:layout_marginBottom="10dp"
             android:text="Kitkat"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-            android:textColor="@color/cardview_light_background" />
+            android:textColor="@color/cardview_light_background"
+             />
+
+        />
 
         <TextView
             android:id="@+id/tv_department"

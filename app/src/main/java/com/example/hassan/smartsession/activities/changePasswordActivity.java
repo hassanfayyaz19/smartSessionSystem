@@ -33,7 +33,7 @@ public class changePasswordActivity extends AppCompatActivity {
     AnimationDrawable anim;
     AssetManager am;
 
-ProgressBar progressBar;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,9 +53,9 @@ ProgressBar progressBar;
         t2 = findViewById(R.id.editText_newpass);
         t3 = findViewById(R.id.editText_confpass);
 
-progressBar=findViewById(R.id.progressBar);
-progressBar.setIndeterminate(true);
-progressBar.setVisibility(View.INVISIBLE);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setIndeterminate(true);
+        progressBar.setVisibility(View.INVISIBLE);
 
     }
 

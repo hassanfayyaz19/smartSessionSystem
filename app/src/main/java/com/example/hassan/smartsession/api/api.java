@@ -76,4 +76,7 @@ public interface api {
 
     );
 
+    @GET("viewdepartments.php")
+    Call<String> getDepartment();
+
 }

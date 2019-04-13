@@ -38,10 +38,6 @@ ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            findViewById(android.R.id.content).setSystemUiVisibility(
-                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
-        }
         setContentView(R.layout.activity_change_password);
         am = this.getApplicationContext().getAssets();
         ConstraintLayout container = (ConstraintLayout) findViewById(R.id.lay);
@@ -117,6 +113,7 @@ progressBar.setVisibility(View.INVISIBLE);
 
     public void back(View view) {
         startActivity(new Intent(this, navi.class));
+        finish();
     }
 
     @Override
@@ -131,5 +128,11 @@ progressBar.setVisibility(View.INVISIBLE);
         super.onPause();
         if (anim != null && anim.isRunning())
             anim.stop();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finish();
     }
 }

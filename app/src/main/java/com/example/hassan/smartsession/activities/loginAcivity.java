@@ -171,6 +171,7 @@ public class loginAcivity extends AppCompatActivity {
                             pref.writePassword(password);
                             pref.WriteDepartment(department);
                             pref.WriteSemester(semester);
+                            pref.writeEmail(email);
                             String getMac = pref.readMac();
                             progressDialog.dismiss();
                             startActivity(new Intent(getApplicationContext(), navi.class));
@@ -187,7 +188,8 @@ public class loginAcivity extends AppCompatActivity {
 
                     }
                 } catch (Exception e) {
-                    Toast.makeText(loginAcivity.this, e.getMessage(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(loginAcivity.this, e.getMessage(), Toast.LENGTH_LONG).show();
+                    Log.i("error",e.getMessage());
                     progressDialog.dismiss();
                 }
             }

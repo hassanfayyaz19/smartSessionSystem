@@ -16,6 +16,7 @@ public class SharePref {
     public static final String semester = "semester";
     public static final String mac="mac";
 
+
     private SharedPreferences sharedPreferences;
     private Context context;
 
@@ -97,4 +98,16 @@ public class SharePref {
     public String readPassword() {
         return sharedPreferences.getString(password, "password");
     }
+
+    public void writeEmail(String e)
+    {
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(email, e);
+        editor.commit();
+    }
+
+    public String readEmail() {
+        return sharedPreferences.getString(email, "email");
+    }
+
 }

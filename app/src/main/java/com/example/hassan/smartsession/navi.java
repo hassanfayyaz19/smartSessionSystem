@@ -20,6 +20,7 @@ import android.widget.Toast;
 import com.example.hassan.smartsession.activities.ViewAttendence;
 import com.example.hassan.smartsession.activities.changePasswordActivity;
 import com.example.hassan.smartsession.activities.loginAcivity;
+import com.example.hassan.smartsession.activities.profileActivity;
 import com.example.hassan.smartsession.activities.scanActivity;
 import com.example.hassan.smartsession.sharedPeference.SharePref;
 
@@ -104,7 +105,7 @@ public class navi extends AppCompatActivity
             // Handle the camera action
             startActivity(new Intent(this, scanActivity.class));
         } else if (id == R.id.nav_gallery) {
-
+            startActivity(new Intent(this, profileActivity.class));
         } else if (id == R.id.nav_share) {
             startActivity(new Intent(this, changePasswordActivity.class));
         } else if (id == R.id.nav_send) {
@@ -134,7 +135,11 @@ public class navi extends AppCompatActivity
                         Intent intent = new Intent(navi.this, ViewAttendence.class);
                         startActivity(intent);
 
-                    } else if (finalI == 3) {
+                    }else if(finalI==2)
+                    {
+                        startActivity(new Intent(navi.this,profileActivity.class));
+                    }
+                    else if (finalI == 3) {
                         logoutUser();
                     }
 

@@ -145,7 +145,7 @@
             android:layout_marginTop="24dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="8dp"
-            android:background="@color/btn_login_bg"
+            android:background="@drawable/buttonstyle"
             android:onClick="createNew"
             android:text="Create Account"
             android:textSize="18sp"

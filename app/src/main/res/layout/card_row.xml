@@ -24,10 +24,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Kitkat"
+            android:text="Course Name"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Headline"
-            android:textColor="@color/cardview_light_background"
-             />
+            android:textColor="@color/cardview_light_background" />
 
         />
 
@@ -35,7 +34,8 @@
             android:id="@+id/tv_department"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="4.4"
+            android:text="Department"
+            android:textAllCaps="true"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="@color/cardview_light_background" />
 
@@ -43,7 +43,7 @@
             android:id="@+id/tv_status"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="18"
+            android:text="status"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="@color/viewfinder_laser" />
 
@@ -51,7 +51,7 @@
             android:id="@+id/tv_date"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="18"
+            android:text="date"
             android:textAppearance="@style/Base.TextAppearance.AppCompat.Medium"
             android:textColor="@color/cardview_light_background" />
 

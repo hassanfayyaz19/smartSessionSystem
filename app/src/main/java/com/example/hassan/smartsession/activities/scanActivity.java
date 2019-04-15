@@ -101,7 +101,7 @@ facultyCode=split[7];
                 //    Toast.makeText(this, department+semester+subject+status, Toast.LENGTH_SHORT).show();
                 if (userDep.equals(department) && userSemester.equals(semester)) {
                     calculateLatLong();
-                    if (distance >= 1000) {
+                    if (distance >= 100) {
                         Toast.makeText(this, "Out of Range", Toast.LENGTH_SHORT).show();
                     } else {
                         Call<attendenceResponse> call = apiInterface.createuser(name, roll, subject,facultyCode, department, semester, status, macAdress);

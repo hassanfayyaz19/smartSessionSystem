@@ -27,12 +27,13 @@ public class profileActivity extends AppCompatActivity {
 
         pref=new SharePref(this);
 
+
         t.setText(pref.readName());
-        t1.setText(pref.readName());
-        t2.setText(pref.readRollNo());
-        t3.setText(pref.readDepartment());
-        t4.setText(pref.readEmail());
-        t5.setText(pref.readSemester());
+        t1.setText("Name :   "+pref.readName());
+        t2.setText("Roll No:   "+pref.readRollNo());
+        t3.setText("Department :  "+pref.readDepartment());
+        t4.setText("Email :  "+pref.readEmail());
+        t5.setText("Semester :  "+pref.readSemester());
 
     }
 }

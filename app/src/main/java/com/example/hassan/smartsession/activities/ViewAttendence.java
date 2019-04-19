@@ -44,6 +44,7 @@ public class ViewAttendence extends AppCompatActivity {
         setContentView(R.layout.activity_view_attendence);
         progressDialog = new ProgressDialog(ViewAttendence.this,
                 R.style.ThemeOverlay_AppCompat_Dialog_Alert);
+
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Loading......");
         progressDialog.show();

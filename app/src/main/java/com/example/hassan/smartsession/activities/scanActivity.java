@@ -74,10 +74,12 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
     public void handleResult(Result result) {
         try {
             String r = result.getText();
-// Get instance of Vibrator from current Context
+        //    Toast.makeText(getApplicationContext(), r, Toast.LENGTH_LONG).show();
+
+        // Get instance of Vibrator from current Context
             Vibrator v = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
 
-// Vibrate for 400 milliseconds
+            // Vibrate for 400 milliseconds
             v.vibrate(400);
             Log.i("data", r);
             split = r.split("\\s+");
@@ -93,7 +95,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
             String id = split[4];
             qrlat = split[5];
             qrLong = split[6];
-facultyCode=split[7];
+            facultyCode=split[7];
 
             /* Toast.makeText(this, lat+" and " + longi, Toast.LENGTH_SHORT).show();
              */

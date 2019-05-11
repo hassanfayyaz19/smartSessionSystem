@@ -2,6 +2,7 @@ package com.example.hassan.smartsession.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.TextView;
 
 import com.example.hassan.smartsession.R;
@@ -28,12 +29,14 @@ public class profileActivity extends AppCompatActivity {
         pref=new SharePref(this);
 
 
+
+
         t.setText(pref.readName());
-        t1.setText("Name :   "+pref.readName());
-        t2.setText("Roll No:   "+pref.readRollNo());
-        t3.setText("Department :  "+pref.readDepartment());
-        t4.setText("Email :  "+pref.readEmail());
-        t5.setText("Semester :  "+pref.readSemester());
+        t1.setText("Name : "+pref.readName());
+        t2.setText("Eoll No. : "+pref.readRollNo());
+        t3.setText("Department : "+pref.readDepartment());
+        t4.setText("Email : "+pref.readEmail());
+        t5.setText("Semester : "+pref.readSemester());
 
     }
 }

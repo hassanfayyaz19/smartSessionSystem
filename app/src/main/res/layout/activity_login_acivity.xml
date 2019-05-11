@@ -40,12 +40,11 @@
                 android:layout_marginTop="10dp"
                 android:adjustViewBounds="true"
                 android:alpha="0.7"
-
                 android:hint="Roll No"
                 android:padding="10dp"
                 android:singleLine="true"
-                android:textColor="#F5F6FA"
-                android:textColorHint="#fff"
+                android:textColor="#ffffff"
+                android:textColorHint="#ffffff"
                 android:textSize="24sp" />
 
             <EditText
@@ -58,7 +57,7 @@
                 android:hint="Password"
                 android:inputType="textPassword"
                 android:padding="10dp"
-                android:textColor="@color/white"
+                android:textColor="#FFFFFFFF"
                 android:textColorHint="#fff"
                 android:textSize="24sp" />
 
@@ -66,7 +65,7 @@
                 android:id="@+id/loginButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:background="@drawable/buttonstyle"
                 android:text="Login"
                 android:textColor="@color/bg_register"

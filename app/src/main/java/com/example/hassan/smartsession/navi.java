@@ -28,7 +28,6 @@ public class navi extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
 
     public static SharePref prefConfig;
-    TextView username, rollView;
 
 
     @Override
@@ -38,9 +37,6 @@ public class navi extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         prefConfig = new SharePref(this);
-
-        username = findViewById(R.id.usernameView);
-        rollView = findViewById(R.id.rollnoView);
 
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -52,6 +48,13 @@ public class navi extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View headerView = navigationView.getHeaderView(0);
+        TextView username = (TextView) headerView.findViewById(R.id.usernameView);
+        TextView roll = headerView.findViewById(R.id.rollnoView);
+        String userg = prefConfig.readName();
+        String rol = prefConfig.readRollNo();
+        username.setText(userg);
+        roll.setText(rol);
 
         android.support.v7.widget.GridLayout mainGrid = (android.support.v7.widget.GridLayout) findViewById(R.id.mainGrid);
         setSingleEvent(mainGrid);
@@ -135,11 +138,9 @@ public class navi extends AppCompatActivity
                         Intent intent = new Intent(navi.this, ViewAttendence.class);
                         startActivity(intent);
 
-                    }else if(finalI==2)
-                    {
-                        startActivity(new Intent(navi.this,profileActivity.class));
-                    }
-                    else if (finalI == 3) {
+                    } else if (finalI == 2) {
+                        startActivity(new Intent(navi.this, profileActivity.class));
+                    } else if (finalI == 3) {
                         logoutUser();
                     }
 

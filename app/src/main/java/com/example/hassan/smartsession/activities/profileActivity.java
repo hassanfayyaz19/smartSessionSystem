@@ -33,7 +33,7 @@ public class profileActivity extends AppCompatActivity {
 
         t.setText(pref.readName());
         t1.setText("Name : "+pref.readName());
-        t2.setText("Eoll No. : "+pref.readRollNo());
+        t2.setText("Roll No. : "+pref.readRollNo());
         t3.setText("Department : "+pref.readDepartment());
         t4.setText("Email : "+pref.readEmail());
         t5.setText("Semester : "+pref.readSemester());

@@ -44,7 +44,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
 
     ZXingScannerView scannerView;
     String split[];
-    String department, semester, subject, status, name, roll, mac, userDep, userSemester;
+    String department, semester, subjectCode, status, name, roll, mac, userDep, userSemester;
     private static api apiInterface;
     SharePref pref;
     static String macAdress;
@@ -90,15 +90,15 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
             mac = "default";
             department = split[0];
             semester = split[1];
-            subject = split[2];
+            subjectCode = split[2];
+            /*String subjectName=split[3];*/
             status = split[3];
             String id = split[4];
             qrlat = split[5];
             qrLong = split[6];
             facultyCode=split[7];
 
-            /* Toast.makeText(this, lat+" and " + longi, Toast.LENGTH_SHORT).show();
-             */
+           /*  Toast.makeText(this, id, Toast.LENGTH_SHORT).show();*/
             if (id.equals("12345")) {
                 //    Toast.makeText(this, department+semester+subject+status, Toast.LENGTH_SHORT).show();
                 if (userDep.equals(department) && userSemester.equals(semester)) {
@@ -106,7 +106,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
                     if (distance >= 100) {
                         Toast.makeText(this, "Out of Range", Toast.LENGTH_SHORT).show();
                     } else {
-                        Call<attendenceResponse> call = apiInterface.createuser(name, roll, subject,facultyCode, department, semester, status, macAdress);
+                        Call<attendenceResponse> call = apiInterface.createuser(name, roll, subjectCode,facultyCode, department, semester, status, macAdress);
                         call.enqueue(new Callback<attendenceResponse>() {
                             @Override
                             public void onResponse(Call<attendenceResponse> call, Response<attendenceResponse> response) {
@@ -138,7 +138,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
 
 
         } catch (Exception e) {
-            Toast.makeText(this, "Invalid QR", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, "Error..!! Try Again", Toast.LENGTH_SHORT).show();
         }
         onBackPressed();
     }

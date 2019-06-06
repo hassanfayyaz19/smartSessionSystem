@@ -28,10 +28,10 @@ public class userAdapter extends RecyclerView.Adapter<userAdapter.ViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull userAdapter.ViewHolder viewHolder, int i) {
-        viewHolder.subject.setText(users.get(i).getSubject());
-        viewHolder.depart.setText(users.get(i).getDepartment());
-        viewHolder.status.setText(users.get(i).getStatus());
-        viewHolder.date.setText(users.get(i).getDate());
+        viewHolder.subject.setText("CourseCode : "+users.get(i).getSubject());
+        viewHolder.depart.setText("Department : "+users.get(i).getDepartment());
+        viewHolder.status.setText("Status : "+users.get(i).getStatus());
+        viewHolder.date.setText("Date : "+users.get(i).getDate());
     }
 
     @Override

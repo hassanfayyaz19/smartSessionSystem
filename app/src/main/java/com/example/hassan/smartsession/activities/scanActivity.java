@@ -103,9 +103,13 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
                 //    Toast.makeText(this, department+semester+subject+status, Toast.LENGTH_SHORT).show();
                 if (userDep.equals(department) && userSemester.equals(semester)) {
                     calculateLatLong();
-                    if (distance >= 100) {
+
+                   // Toast.makeText(this, String.valueOf(distance), Toast.LENGTH_SHORT).show();
+                    if (distance >= 200) {
                         Toast.makeText(this, "Out of Range", Toast.LENGTH_SHORT).show();
                     } else {
+                        //   Log.d("TAGa",name+"\n"+roll+"\n"+subjectCode+"\n"+facultyCode+"\n"+department+"\n"+semester+"\n"+status+"\n"+macAdress);
+                      //  Toast.makeText(this,name+"\n"+roll+"\n"+subjectCode+"\n"+facultyCode+"\n"+department+"\n"+semester+"\n"+status+"\n"+macAdress , Toast.LENGTH_LONG).show();
                         Call<attendenceResponse> call = apiInterface.createuser(name, roll, subjectCode,facultyCode, department, semester, status, macAdress);
                         call.enqueue(new Callback<attendenceResponse>() {
                             @Override
@@ -130,7 +134,7 @@ public class scanActivity extends AppCompatActivity implements ZXingScannerView.
                     }
 
                 } else {
-                    Toast.makeText(this, "Department did'nt match", Toast.LENGTH_LONG).show();
+                    Toast.makeText(this, "Department or Semester did'nt match", Toast.LENGTH_LONG).show();
                 }
             } else {
                 Toast.makeText(this, "QR is Invalid", Toast.LENGTH_SHORT).show();

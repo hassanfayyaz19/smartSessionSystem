@@ -11,7 +11,7 @@ public class ApiClient {
 
    /* public static final String Base_URL = "http://hassan105.000webhostapp.com/smartSession/";*/
   /*  public static final String Base_URL="http://192.168.43.251/php/smart/";*/
-    public static final String Base_URL="http://smartsessionqr.com/mobile/";
+    public static final String Base_URL="https://smartsessionqr.com/api/";
 
 
     public static Retrofit retrofit = null;

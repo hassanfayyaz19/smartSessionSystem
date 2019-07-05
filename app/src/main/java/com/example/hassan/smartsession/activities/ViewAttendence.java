@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.example.hassan.smartsession.R;
@@ -48,6 +49,8 @@ public class ViewAttendence extends AppCompatActivity {
         progressDialog.setIndeterminate(true);
         progressDialog.setMessage("Loading......");
         progressDialog.show();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
         config = new SharePref(this);
         apiInterface = ApiClient.getApiClient().create(api.class);
         roll = config.readRollNo();
@@ -71,9 +74,11 @@ public class ViewAttendence extends AppCompatActivity {
                     adapter = new userAdapter(data);
                     recyclerView.setAdapter(adapter);
                     progressDialog.dismiss();
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 } catch (Exception e) {
                     Toast.makeText(ViewAttendence.this, "error : "+e.getMessage(), Toast.LENGTH_SHORT).show();
                     progressDialog.dismiss();
+                    getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 }
             }
 
@@ -81,8 +86,15 @@ public class ViewAttendence extends AppCompatActivity {
             public void onFailure(Call<ViewDataResponse> call, Throwable t) {
                 Toast.makeText(ViewAttendence.this,"Fail: "+ t.getMessage(), Toast.LENGTH_LONG).show();
                 progressDialog.dismiss();
+                getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
                 Log.i("Error",t.getMessage());
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        getWindow().clearFlags(WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE);
     }
 }
